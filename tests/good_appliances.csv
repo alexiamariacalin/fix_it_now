@@ -1,0 +1,16 @@
+TYPE(FRIDGE/TV/WASHING MACHINE),BRAND,MODEL,MANUFACTURE YEAR,CATALOG PRICE,SPECIFICATION(FREEZER/SIZE IN CM/CAPACITY IN KG)
+Fridge,Samsung,TwinCooling,2022,3500,Yes
+Fridge,LG,CoolMax,2021,4200,No
+Fridge,Arctic,FreshPlus,2020,1800,Yes
+Fridge,Panasonic,ArcticPro,2023,4800,Yes
+Fridge,Daewoo,IceMaster,2018,1600,No
+TV,Hisense,EvoSmart,2024,4300,95
+TV,Sony,Mini5000,2019,2500,80
+TV,Philips,UltraView,2023,5000,120
+TV,TCL,SmartVision,2022,4000,100
+TV,Samsung,CrystalView,2021,3500,85
+Washing Machine,Whirlpool,PowerClean,2024,3000,10
+Washing Machine,Beko,NaturalDry,2020,2300,6
+Washing Machine,Electrolux,ExtraSteam,2022,2700,8
+Washing Machine,LG,TurboWash,2019,2200,7
+Washing Machine,Siemens,QuickWash,2023,3200,9

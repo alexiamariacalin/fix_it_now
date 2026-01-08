@@ -1,0 +1,4 @@
+TYPE,NAME,SURNAME,CNP,EMPLOYMENT DATE(DD-MM-YYYY),HOMETOWN,SALARY,LIST OF APPLIANCES(FOR TECHNICIANS ONLY)
+Technician,Jim,Brown,5000119376211,20-06-2021,Timișoara,4600,Fridge(Arctic,Daewoo);TV(Philips,Sony);Washing Machine(Beko,Electrolux)
+Technician,Mike,Johnson,6021019011120,10-11-2018,Iași,4800,Fridge(LG,Panasonic);TV(Hisense,Samsung);Washing Machine(Whirlpool,LG)
+Supervisor,Jane,Smith,2830623318700,15-03-2019,Cluj-Napoca,5600

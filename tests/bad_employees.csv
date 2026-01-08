@@ -1,0 +1,7 @@
+TYPE,NAME,SURNAME,CNP,EMPLOYMENT DATE(DD-MM-YYYY),HOMETOWN,LIST OF APPLIANCES(FOR TECHNICIANS ONLY)
+Receptionist,John,Doe,780819319148,30-01-2020,București
+Supervisor,Jannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnne,Smith,2830623318700,15-03-2019,Cluj-Napoca
+Technician,J,Brown,500011936211,20-06-2021,Timișoara,Fridge(Arctic,Daewoo);TV(Philips,Sony);Washing Machine(Beko,Electrolux)
+Technician,Mike,Johnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnson,6021019011120,10-11-2018,Iași,Fridge(LG,Panasonic);TV(Hisense,Samsung);Washing Machine(Whirlpool,LG)
+Technician,Emily,Da,2980430013879,05-05-2022,Constanța,Fridge(Samsung,Arctic);TV(Sony,TCL);Washing Machine(LG,Siemens)
+Supervisor,Jane,Smith,2830623318700,32-13-2019,Cluj-Napoca

@@ -1,0 +1,25 @@
+1. Employee Management
+     a. Add Employee
+     b. Modify Employee (Change Surname)
+     c. Delete Employee
+     d. Find Employee by CNP & Display Information with Salary
+     e. Display Employee List
+
+2. Appliance Management
+     a. Add Appliance
+     b. Delete Appliance
+     c. Display Repaired Appliances
+     d. Display Unrepairable Appliances
+
+3. Request Processing
+     a. Simulate Requests & Handle Invalid Requests
+     b. Allocate Valid Requests
+     c. Simulate Repairs & Display Requests Details
+
+4. Reports (Generate .csv File)
+     a. Display Top 3 Employees with the Biggest Salary (Alphabetical Order)
+     b. Display Technician with Longest Repair Time
+     c. Display Pending Requests
+
+0. Exit Service
+
