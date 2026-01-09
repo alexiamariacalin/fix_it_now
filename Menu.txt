@@ -12,8 +12,8 @@
      d. Display Unrepairable Appliances
 
 3. Request Processing
-     a. Simulate Requests & Handle Invalid Requests
-     b. Allocate Valid Requests
+     a. Receive Requests & Handle Invalid Requests
+     b. Assign Valid Requests
      c. Simulate Repairs & Display Requests Details
 
 4. Reports (Generate .csv File)

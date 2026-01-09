@@ -66,6 +66,9 @@ bool validate_CNP(string cnp) // S AA LL ZZ JJ NNN C
 }
 int age(string cnp)
 {
+    time_t present = time(NULL);
+    struct tm now = *localtime(&present);
+
     int year = stoi(cnp.substr(1, 2));
     if (cnp[0] == '1' or cnp[0] == '2')
         year += 1900;

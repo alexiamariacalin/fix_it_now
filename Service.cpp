@@ -26,12 +26,12 @@ vector<unique_ptr<Employee>>::iterator Service::find_employee_by_CNP(string cnp)
             return i;
     throw "Employee with CNP = " + cnp + " does not exist";
 }
-vector<unique_ptr<Employee>>::iterator Service::get_receptionist()
+Receptionist *Service::get_receptionist() const
 {
     for (auto i = employees.begin(); i != employees.end(); i++)
         if ((*i)->get_type() == "Receptionist")
-            return i;
-    //throw(string) "Receptionist not found";
+            return static_cast<Receptionist *>((*i).get());
+    throw(string) "Receptionist not found";
 }
 void Service::modify_employee(vector<unique_ptr<Employee>>::iterator i, string surname) // NOT FINISHED YET
 {
@@ -68,9 +68,26 @@ void Service::add_unrepairable_appliance(string type, string brand, string model
     else
         unrepairable_appliances.insert({{type, {brand, model}}, 1});
 }
+int Service::total_unrepairable_appliances() const
+{
+    int total = 0;
+    for (auto &i : unrepairable_appliances)
+        total += i.second;
+    return total;
+}
+void Service::add_repaired_appliance(Appliance *a)
+{
+    repaired_appliances.push_back(a);
+}
+void Service::print_repaired_appliances() const
+{
+    cout << "TOTAL REPAIRED APPLIANCES: " << repaired_appliances.size() << endl;
+    for (auto &i : repaired_appliances)
+        i->print_appliance();
+}
 void Service::print_unrepairable_appliances() const
 {
-    cout << "TOTAL UNREPAIRABLE APPLIANCES: " << unrepairable_appliances.size() << endl
+    cout << "TOTAL UNREPAIRABLE APPLIANCES: " << total_unrepairable_appliances() << endl
          << endl;
     vector<pair<pair<string, pair<string, string>>, int>> aux(unrepairable_appliances.begin(), unrepairable_appliances.end());
     sort(aux.begin(), aux.end(), [](const pair<pair<string, pair<string, string>>, int> &a, const pair<pair<string, pair<string, string>>, int> &b)
@@ -100,11 +117,26 @@ void Service::add_request(shared_ptr<Request> r)
          << endl;
     requests.push_back(move(r));
 }
+void Service::add_pending_request(shared_ptr<Request> r)
+{
+    pending_requests.push_back(move(r));
+}
 void Service::print_requests() const
 {
     cout << "TOTAL REQUESTS: " << requests.size() << endl;
     for (auto &i : requests)
         i->print_request();
+}
+void Service::print_pending_requests_in_file() const
+{
+    ofstream out("files/pending_requests.csv");
+    out << "ID;APPLIANCE;SUBMISSION DATE(DD-MM-YYYY HH:MM:SS);COMPLEXITY LEVEL;ESTIMATED REPAIR TIME;COST" << endl;
+    for (auto &i : pending_requests)
+    {
+        print_pending_request_in_file(out, i.get());
+        out << endl;
+    }
+    out.close();
 }
 void Service::print_valid_requests() const
 {
@@ -115,6 +147,12 @@ void Service::print_valid_requests() const
         temp_priority_queue.top()->print_request();
         temp_priority_queue.pop();
     }
+}
+void Service::print_pending_requests() const
+{
+    cout << "TOTAL PENDING REQUESTS: " << pending_requests.size() << endl;
+    for (auto &i : pending_requests)
+        i->print_request();
 }
 bool Service::validate_service() const
 {
@@ -151,7 +189,7 @@ void Service::top_3_employees() const
     // aux[0]->print_employee();
     // aux[1]->print_employee();
     // aux[2]->print_employee();
-    ofstream out("tests/top3employees.csv");
+    ofstream out("files/top3employees.csv");
     out << "TYPE,NAME,SURNAME,CNP,EMPLOYMENT DATE(DD-MM-YYYY),HOMETOWN,SALARY,LIST OF APPLIANCES(FOR TECHNICIANS ONLY)" << endl;
     for (auto i = aux.begin(); i != aux.end(); i++)
     {
@@ -191,4 +229,75 @@ void Service::delete_appliance()
     appliances.erase(i);
     cout << "Appliance deleted successfully" << endl
          << endl;
+}
+Technician *Service::find_best_technician_for_request(shared_ptr<Request> r) const
+{
+    int max_active_repairs = 3, max_workload = 100000000;
+    Technician *best_technician = nullptr;
+    for (auto i = employees.begin(); i != employees.end(); i++)
+        if ((*i)->get_type() == "Technician")
+        {
+            Technician *t = static_cast<Technician *>(i->get());
+            if (t->find_skill(r->get_appliance()->get_type(), r->get_appliance()->get_brand()))
+                if (t->get_active_repairs().size() < max_active_repairs and max_workload > t->get_workload()) // find technician with least active repairs and least workload
+                {
+                    max_active_repairs = t->get_active_repairs().size();
+                    best_technician = t;
+                    max_workload = t->get_workload();
+                }
+        }
+    return best_technician;
+}
+void Service::assign_request_to_technician(shared_ptr<Request> r)
+{
+    Technician *best = find_best_technician_for_request(r);
+    if (best == nullptr) // all technicians are busy
+    {
+        add_pending_request(r);
+        return;
+    }
+    best->add_repair(r);
+}
+void Service::assign_requests_to_technicians()
+{
+    while (!valid_requests.empty())
+    {
+        assign_request_to_technician(valid_requests.top());
+        valid_requests.pop();
+    }
+}
+void Service::simulation()
+{
+    cout << "START SIMULATION" << endl;
+    int tick = 1;
+    bool ok = 1; // runs as long as someone repairs something
+    while (ok)
+    {
+        ok = 0;
+        cout << "TIME " << tick << ":" << endl;
+        for (auto &i : employees)
+            if (i->get_type() == "Technician")
+            {
+                Technician *t = static_cast<Technician *>(i.get());
+                auto aux = t->remove_finished_repairs();
+                for (auto i = aux.begin(); i != aux.end(); i++)
+                    add_repaired_appliance((*i));
+                bool aux2 = t->work_on_repairs();
+                ok = (ok || aux2);
+                // ok = (t->work_on_repairs() || ok);
+
+                if (aux.size() != 0 || aux2) // format output
+                    cout << endl;
+            }
+        this_thread::sleep_for(chrono::seconds(1));
+        // this_thread::sleep_for(chrono::milliseconds(500));
+        tick++;
+    }
+    cout << "END SIMULATION" << endl;
+}
+void Service::report_technician_longest_repair() const
+{
+    ofstream out("files/longest_repair");
+    out << "TYPE,NAME,SURNAME,CNP,EMPLOYMENT DATE(DD-MM-YYYY),HOMETOWN,SALARY,LIST OF APPLIANCES" << endl;
+    print_employee_in_file(out, longest_repair_technician);
 }

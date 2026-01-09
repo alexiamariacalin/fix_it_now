@@ -11,8 +11,9 @@ test:
 good:
 	clear
 	@g++ *.cpp
+	@mkdir files
 	@./a.out tests/good_appliances.csv tests/good_employees.csv tests/good_requests.csv
-	@rm a.out
+	@rm -r a.out files
 bad:
 	clear
 	@g++ *.cpp

@@ -1,7 +1,32 @@
 APPLIANCE;SUBMISSION DATE(DD-MM-YYYY HH:MM:SS);COMPLEXITY LEVEL
+Fridge,Arctic,IceKing,2021,3700,Yes;27-03-2024 14:30:05;2
+Fridge,Arctic,IceKing,2020,1900,No;05-04-2024 11:35:50;5
+Fridge,Panasonic,ArcticPro,2023,4800,Yes;20-02-2024 09:15:42;6
 Fridge,LG,CoolMax,2021,4200,No;12-01-2024 12:10:30;1
+Fridge,Daewoo,IceMaster,2018,1600,No;03-03-2024 14:10:05;2
+Fridge,Whirlpool,EverCool,2019,2000,Yes;20-03-2024 13:10:15;3
+Fridge,Bosch,VitaFresh,2024,5100,Yes;12-03-2024 09:35:10;0
+Fridge,Samsung,TwinCooling,2022,3500,Yes;05-01-2024 08:30:00;4
+Fridge,Arctic,FreshPlus,2020,1800,Yes;10-02-2024 16:40:12;0
+Fridge,Arctic,IceKing,2022,4500,Yes;12-04-2024 15:20:40;4
+TV,Samsung,CrystalView,2021,3500,85;07-03-2024 16:25:50;1
+TV,Philips,UltraView,2023,5000,120;12-02-2024 10:20:35;3
+TV,LG,NanoScreen,2024,4800,110;15-03-2024 11:20:45;5
+TV,TCL,SmartVision,2022,4000,100;25-02-2024 17:05:18;4
+TV,Philips,CrystalVision,2021,4200,95;08-04-2024 13:50:30;3
+TV,TCL,UltraSmart,2024,5000,120;15-04-2024 09:45:25;2
 TV,Hisense,EvoSmart,2024,4300,95;20-03-2024 15:45:00;2
+TV,Sony,Mini5000,2019,2500,80;22-01-2024 14:15:45;1
+TV,Panasonic,VisionPlus,2020,3000,90;22-03-2024 09:40:50;6
+TV,Sony,MaxView,2023,4600,100;30-03-2024 16:45:40;4
+Washing Machine,LG,PowerWash,2023,3100,9;10-04-2024 10:10:05;6
+Washing Machine,Indesit,DailyWash,2018,1900,5;25-03-2024 12:55:30;0
+Washing Machine,Electrolux,ExtraSteam,2022,2700,8;18-02-2024 13:55:00;5
+Washing Machine,LG,PowerWash,2022,2800,8;02-04-2024 09:20:15;1
+Washing Machine,Beko,NaturalDry,2020,2300,6;28-01-2024 11:05:20;2
 Washing Machine,Whirlpool,PowerClean,2024,3000,10;15-02-2024 09:25:14;3
-Washing Machine,Whirlpool,PowerClean,2024,3000,10;15-02-2024 09:23:15;3
-Washing Machine,Whirlpool,PowerClean,2024,3000,10;15-02-2024 09:25:15;3
-Fridge,LG,CoolMax,2021,4200,No;12-01-2024 12:10:32;1
+Washing Machine,LG,TurboWash,2019,2200,7;28-02-2024 12:45:30;3
+Washing Machine,Bosch,ActiveWater,2024,3400,10;18-03-2024 15:05:00;2
+Washing Machine,LG,PowerWash,2022,2900,7;18-04-2024 14:55:50;0
+Washing Machine,Siemens,QuickWash,2023,3200,9;10-03-2024 10:50:22;6
+Washing Machine,Whirlpool,SteamPro,2023,3100,9;10-04-2024 10:10:05;6

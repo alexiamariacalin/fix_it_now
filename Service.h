@@ -8,6 +8,8 @@
 #include <memory>
 #include <map>
 #include <algorithm>
+#include <thread>
+#include <chrono>
 #include "Employee.h"
 #include "Supervisor.h"
 #include "Receptionist.h"
@@ -24,12 +26,14 @@ class Service // singleton class
 {
 
     vector<unique_ptr<Employee>> employees;
+    Technician *longest_repair_technician;
 
     vector<unique_ptr<Appliance>> appliances;
     vector<Appliance *> repaired_appliances;
     map<pair<string, pair<string, string>>, int> unrepairable_appliances; // find by type,brand,model
 
-    vector<shared_ptr<Request>> requests; // in a vector initially??????????????????????
+    vector<shared_ptr<Request>> requests;
+    vector<shared_ptr<Request>> pending_requests;
     vector<shared_ptr<Request>> invalid_requests;
 
     priority_queue<shared_ptr<Request>, vector<shared_ptr<Request>>,
@@ -53,21 +57,33 @@ public:
     void delete_employee(int);                                            // by ID
     void sort_employees_by_salary();
     void top_3_employees() const; // by salary
-    vector<unique_ptr<Employee>>::iterator get_receptionist();
+    Receptionist *get_receptionist() const;
 
     void print_appliances() const;
     void add_appliance(unique_ptr<Appliance>);
+    void add_repaired_appliance(Appliance *);
+    void print_repaired_appliances() const;
     void print_unrepairable_appliances() const;
+    int total_unrepairable_appliances() const;
     void add_unrepairable_appliance(string, string, string); // type,brand, model
     void delete_appliance();
     vector<unique_ptr<Appliance>>::iterator find_appliance(const Appliance &);
 
     void print_requests() const;
     void print_valid_requests() const;
+    void print_pending_requests() const;
+    void print_pending_requests_in_file() const;
     void add_request(shared_ptr<Request>); //
     void add_valid_request(shared_ptr<Request>);
     void add_invalid_request(shared_ptr<Request>);
+    void add_pending_request(shared_ptr<Request>);
     void sort_requests_by_date();
+
+    void report_technician_longest_repair() const;
+    void assign_request_to_technician(shared_ptr<Request>);
+    void assign_requests_to_technicians();
+    Technician *find_best_technician_for_request(shared_ptr<Request>) const;
+    void simulation();
 
     bool validate_service() const;
     Service(Service const &) = delete;

@@ -16,7 +16,7 @@ int main(int argc, const char *argv[])
     read_employees_from_file(argv[2]);
     try
     {
-        bool x = service.validate_service();
+        bool x = service.validate_service(); //   MOVE THIS IN WHILE
     }
     catch (string error)
     {
@@ -30,7 +30,7 @@ int main(int argc, const char *argv[])
     // service.print_employees();
 
     // read_requests_from_file(argv[3]);
-    service.sort_requests_by_date();
+    // service.sort_requests_by_date();
     // service.print_requests();
 
     map<string, int> menu = {{"1a", 1},
@@ -165,6 +165,11 @@ int main(int argc, const char *argv[])
                 }
                 break;
             }
+            case 8:
+            {
+                service.print_repaired_appliances();
+                break;
+            }
             case 9: // print unrepairable appliances
             {
                 service.print_unrepairable_appliances();
@@ -173,14 +178,33 @@ int main(int argc, const char *argv[])
             case 10: // read requests
             {
                 read_requests_from_file(argv[3]);
-                service.print_valid_requests();
+                // service.print_valid_requests();
+                break;
+            }
+            case 11: // assign valid requests to technicians, mark rest as pending
+            {
+                service.assign_requests_to_technicians();
+                cout << "Successfully assigned valid requests to technicians" << endl
+                     << endl;
+                break;
+            }
+            case 12: // real time work simulation
+            {
+                service.simulation();
                 break;
             }
             case 13: // top 3 employees by salary
             {
                 service.sort_employees_by_salary();
                 service.top_3_employees();
-                cout << "File generated successfully, check tests/top3employees.csv" << endl
+                cout << "File generated successfully, check files/top3employees.csv" << endl
+                     << endl;
+                break;
+            }
+            case 15: // print pending requests in file
+            {
+                service.print_pending_requests_in_file();
+                cout << "File generated successfully, check files/pending_requests.csv" << endl
                      << endl;
                 break;
             }

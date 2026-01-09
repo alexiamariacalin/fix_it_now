@@ -29,8 +29,9 @@ unique_ptr<Employee> read_employee_from_file(string e)
             getline(in, type, '(');
             getline(in, list, ')');
             stringstream ss(list);
-            while (getline(ss, brand, ','))
-                skills.insert({type, brand});
+            if (list != "-")
+                while (getline(ss, brand, ','))
+                    skills.insert({type, brand});
             in.ignore(1, ';');
         }
         return (make_unique<Technician>(name, surname, CNP, day, month, year, hometown, skills));
@@ -148,11 +149,13 @@ void read_requests_from_file(const string &file)
             service.add_request(r);
             try
             {
+                if (r->get_complexity_level() == 0)
+                    throw(string) "Too damaged to be saved";
+                service.get_receptionist()->add_request_ID(r->get_ID());
                 auto i = service.find_appliance(*r->get_appliance());
                 service.add_valid_request(r);
-                dynamic_cast<Receptionist *>(service.get_receptionist()->get())->add_request_ID(r->get_ID());
             }
-            catch (string error) // appliance not found
+            catch (string error) // appliance not found or complexity level = 0
             {
                 service.add_unrepairable_appliance(r->get_appliance()->get_type(), r->get_appliance()->get_brand(), r->get_appliance()->get_model());
             }
@@ -172,13 +175,12 @@ void print_employee_in_file(ofstream &file, Employee *e)
     struct tm aux = e->get_employment_date();
     strftime(output, sizeof(output), "%d-%m-%Y", &aux);
     file << output;
-    file << "," << e->get_hometown();
-    file << "," << e->salary();
+    file << "," << e->get_hometown() << "," << e->salary();
     if (e->get_type() == "Technician")
     {
         file << ",";
         vector<string> v = {"Fridge", "TV", "Washing Machine"};
-        Technician *t = dynamic_cast<Technician *>(e);
+        Technician *t = static_cast<Technician *>(e);
         for (auto k : v)
         {
             multimap<string, string> skills = t->get_skills();
@@ -316,4 +318,20 @@ unique_ptr<Appliance> read_appliance_from_menu()
         // service.add_appliance(move(w));
     }
     return nullptr;
+}
+void print_appliance_in_file(ofstream &file, Appliance *a)
+{
+    file << a->get_type() << "," << a->get_brand() << "," << a->get_model() << "," << a->get_manufacture_year() << "," << a->get_catalog_price() << ",";
+    if (a->get_type() == "Fridge")
+        file << (static_cast<Fridge *>(a)->get_freezer() ? "Yes" : "No");
+    else if (a->get_type() == "TV")
+        file << static_cast<TV *>(a)->get_size();
+    else if (a->get_type() == "Washing Machine")
+        file << static_cast<WashingMachine *>(a)->get_capacity();
+}
+void print_pending_request_in_file(ofstream &file, Request *r)
+{
+    file << r->get_ID() << ";";
+    print_appliance_in_file(file, r->get_appliance());
+    file << "," << r->get_complexity_level() << "," << r->get_estimated_repair_time() << "," << r->get_cost();
 }

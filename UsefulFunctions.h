@@ -3,8 +3,6 @@
 #include <ctime>
 #include <string>
 using namespace std;
-time_t present = time(NULL);
-    struct tm now = *localtime(&present);
 bool validate_CNP(string);
 bool validate_date(const int, const int, const int, const int, const int, const int); // day,month,year,hour,minute,second
 int age(string);                                                                      // calculate from CNP

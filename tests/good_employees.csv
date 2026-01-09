@@ -3,4 +3,11 @@ Receptionist,John,Doe,1780819319148,01-01-2020,București
 Supervisor,Jane,Smith,2830623318700,15-03-2019,Cluj-Napoca
 Technician,Jim,Brown,5000119376211,20-06-2021,Timișoara,Fridge(Arctic,Daewoo);TV(Philips,Sony);Washing Machine(Beko,Electrolux)
 Technician,Mike,Johnson,6021019011120,10-11-2018,Iași,Fridge(LG,Panasonic);TV(Hisense,Samsung);Washing Machine(Whirlpool,LG)
-Technician,Emily,Davis,2980430013879,05-05-2022,Constanța,Fridge(Samsung,Arctic);TV(Sony,TCL);Washing Machine(LG,Siemens)
+Technician,Emily,Davis,2980430013879,05-05-2022,Constanța,Fridge(Samsung,Arctic);TV(Sony,TCL);Washing Machine(LG,Siemens,Whirlpool)
+Technician,Alex,Wilson,1960619176197,12-02-2023,Brașov,Fridge(Bosch,Panasonic,Samsung);TV(LG,Philips);Washing Machine(Bosch)
+Technician,Olivia,Anderson,2631224324053,01-07-2020,Sibiu,Fridge(Samsung);TV(TCL,Hisense,Sony,Philips);Washing Machine(Whirlpool,Indesit,Electrolux)
+Technician,James,Martin,1671013204615,25-03-2019,Cluj-Napoca,Fridge(Arctic,Daewoo,Samsung,LG);TV(-);Washing Machine(LG,Beko)
+Technician,Sophia,Clark,1850224203606,15-09-2021,București,Fridge(Panasonic,Samsung,LG);TV(Philips,TCL);Washing Machine(Siemens,Whirlpool,LG)
+Technician,Andrew,White,6030602353738,05-11-2022,Iași,Fridge(Bosch,Arctic);TV(LG,Hisense,Philips);Washing Machine(Electrolux,Indesit,Beko)
+Technician,Hannah,Robinson,6020709395399,20-02-2023,Constanța,Fridge(Daewoo,LG,Samsung);TV(Sony,Samsung,TCL,Philips);Washing Machine(Beko,Whirlpool,LG,Electrolux,Siemens)
+Technician,Steven,Harris,6010907419126,10-06-2021,Timișoara,Fridge(Samsung,Panasonic,Arctic);TV(Philips,TCL,Hisense);Washing Machine(-)
